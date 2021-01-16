@@ -5,7 +5,8 @@ import           Lib
 
 main :: IO ()
 main = do
-    fs <- listDirectory "."
+    ds <- getArgs
+    fs <- listDirectory $ head ds
     let ids  = extractVideoIDs fs
         urls = map makeVideoURL ids
     mapM_ putStrLn urls
