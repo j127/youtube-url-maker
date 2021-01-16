@@ -17,9 +17,9 @@ helper _                       = Nothing
 
 -- not all files will have a VideoID
 extractVideoID :: FileName -> Maybe VideoID
-extractVideoID p =
-    let f = helper $ reverse $ splitOn "." p
-    in  case f of
+extractVideoID fname =
+    let x = helper $ reverse $ splitOn "." fname
+    in  case x of
             Just a -> Just (reverse $ take 11 $ reverse a)
             _      -> Nothing
 
@@ -27,4 +27,4 @@ extractVideoIDs :: [FileName] -> [YouTubeURL]
 extractVideoIDs = mapMaybe extractVideoID
 
 makeVideoURL :: VideoID -> YouTubeURL
-makeVideoURL s = "https://www.youtube.com/watch?v=" ++ s
+makeVideoURL vid = "https://www.youtube.com/watch?v=" ++ vid
